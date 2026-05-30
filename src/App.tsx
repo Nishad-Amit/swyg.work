@@ -73,7 +73,9 @@ export const App: React.FC = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       if (mobile) {
-        setScale(1);
+        const scaleX = window.innerWidth / 390;
+        const scaleY = window.innerHeight / 852;
+        setScale(Math.min(scaleX, scaleY));
       } else {
         const scaleX = window.innerWidth / 1440;
         const scaleY = window.innerHeight / 1024;
@@ -96,8 +98,18 @@ export const App: React.FC = () => {
 
   if (isMobile) {
     return (
-      <div className="relative w-screen h-screen bg-[#F8F3EC] overflow-hidden">
-        <MobileScreen model={model} onNext={handleNext} isMobileLayout={true} />
+      <div className="relative w-screen h-screen bg-[#F8F3EC] overflow-hidden flex items-center justify-center">
+        <div
+          className="relative flex-shrink-0"
+          style={{
+            width: "390px",
+            height: "852px",
+            transform: `scale(${scale})`,
+            transformOrigin: "center center",
+          }}
+        >
+          <MobileScreen model={model} onNext={handleNext} isMobileLayout={false} />
+        </div>
       </div>
     );
   }
