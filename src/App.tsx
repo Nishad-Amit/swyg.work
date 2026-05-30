@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { OnboardingModel, type StepConfig } from "./models/OnboardingState";
 import { MobileScreen } from "./components/MobileScreen";
 import { BackgroundWatermark } from "./components/BackgroundWatermark";
@@ -65,6 +65,18 @@ const STEPS: StepConfig[] = [
 export const App: React.FC = () => {
   const [model, setModel] = useState<OnboardingModel>(() => new OnboardingModel(STEPS));
   const [, setTick] = useState<number>(0);
+  const [scale, setScale] = useState<number>(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const scaleX = window.innerWidth / 1440;
+      const scaleY = window.innerHeight / 1024;
+      setScale(Math.min(scaleX, scaleY));
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleNext = () => {
     if (model.isLastStep()) {
@@ -77,8 +89,18 @@ export const App: React.FC = () => {
 
   return (
     <div className="relative w-screen h-screen bg-[#ECDAFF] overflow-hidden flex items-center justify-center">
-      <BackgroundWatermark />
-      <MobileScreen model={model} onNext={handleNext} />
+      <div
+        className="relative flex items-center justify-center flex-shrink-0"
+        style={{
+          width: "1440px",
+          height: "1024px",
+          transform: `scale(${scale})`,
+          transformOrigin: "center center",
+        }}
+      >
+        <BackgroundWatermark />
+        <MobileScreen model={model} onNext={handleNext} />
+      </div>
     </div>
   );
 };
