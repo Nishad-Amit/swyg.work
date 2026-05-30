@@ -73,9 +73,9 @@ export const App: React.FC = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       if (mobile) {
-        const scaleX = (window.innerWidth - 32) / 390;
-        const scaleY = (window.innerHeight - 32) / 852;
-        setScale(Math.min(scaleX, scaleY));
+        const scaleX = (window.innerWidth - 48) / 390;
+        const scaleY = (window.innerHeight - 48) / 852;
+        setScale(Math.min(scaleX, scaleY) * 0.9);
       } else {
         const scaleX = window.innerWidth / 1440;
         const scaleY = window.innerHeight / 1024;
