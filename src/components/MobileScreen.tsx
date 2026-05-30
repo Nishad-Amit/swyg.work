@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { OnboardingModel } from "../models/OnboardingState";
 import { Logo } from "./Logo";
 
@@ -165,15 +166,25 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
                 <div
                   key={blob.number}
                   style={blobStyle}
-                  className="absolute bg-[#ECDAFF]/50 p-4 flex flex-col items-center justify-center text-center backdrop-blur-[1px]"
+                  className="absolute p-4 flex flex-col items-center justify-center text-center backdrop-blur-[1px]"
                 >
-                  <div className="w-9 h-9 bg-[#9031F1] text-white flex items-center justify-center rounded-full font-bold text-[16px] mb-2 shadow-sm">
+                  <motion.div
+                    className="absolute inset-0 bg-[#ECDAFF]/50"
+                    style={{ borderRadius: blobStyle.borderRadius }}
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 25,
+                      ease: "linear",
+                    }}
+                  />
+                  <div className="relative z-10 w-9 h-9 bg-[#9031F1] text-white flex items-center justify-center rounded-full font-bold text-[16px] mb-2 shadow-sm">
                     {blob.number}
                   </div>
-                  <h3 className="font-fustat font-bold text-[14px] text-[#2E0064] mb-1 leading-tight">
+                  <h3 className="relative z-10 font-fustat font-bold text-[14px] text-[#2E0064] mb-1 leading-tight">
                     {blob.title}
                   </h3>
-                  <p className="font-fustat font-normal text-[10.5px] text-[#5C5464] leading-[1.3] max-w-[170px]">
+                  <p className="relative z-10 font-fustat font-normal text-[10.5px] text-[#5C5464] leading-[1.3] max-w-[170px]">
                     {blob.text.includes("<break>") ? (
                       blob.text.split("<break>").map((line, i) => (
                         <React.Fragment key={i}>
