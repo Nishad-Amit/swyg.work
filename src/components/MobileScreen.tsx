@@ -14,10 +14,12 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({ model, onNext }) => 
 
   return (
     <div
-      className="relative flex flex-col justify-between overflow-hidden"
+      className="absolute flex flex-col justify-between overflow-hidden"
       style={{
         width: "390px",
         height: "852px",
+        top: "65px",
+        left: "561px",
         borderRadius: "24px",
         backgroundColor: "#F8F3EC",
         boxShadow: "0px 4px 40px 0px rgba(0, 0, 0, 0.1)",
