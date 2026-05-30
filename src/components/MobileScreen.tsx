@@ -5,34 +5,84 @@ import { Logo } from "./Logo";
 interface MobileScreenProps {
   model: OnboardingModel;
   onNext: () => void;
+  isMobileLayout?: boolean;
 }
 
-export const MobileScreen: React.FC<MobileScreenProps> = ({ model, onNext }) => {
+export const MobileScreen: React.FC<MobileScreenProps> = ({ model, onNext, isMobileLayout = false }) => {
   const currentStep = model.getCurrentStep();
   const currentStepNum = model.getCurrentStepNumber();
   const totalSteps = model.getTotalSteps();
 
-  return (
-    <div
-      className="absolute flex flex-col justify-between overflow-hidden"
-      style={{
+  const containerStyle = isMobileLayout
+    ? {
+        width: "100vw",
+        height: "100vh",
+        borderRadius: "0px",
+        backgroundColor: "#F8F3EC",
+        boxShadow: "none",
+      }
+    : {
         width: "390px",
         height: "852px",
-        top: "65px",
-        left: "561px",
         borderRadius: "24px",
         backgroundColor: "#F8F3EC",
         boxShadow: "0px 4px 40px 0px rgba(0, 0, 0, 0.1)",
-      }}
+      };
+
+  const headerStyle = isMobileLayout
+    ? {
+        width: "100%",
+        height: "77px",
+        top: "0px",
+        left: "0px",
+      }
+    : {
+        width: "374px",
+        height: "77px",
+        top: "0px",
+        left: "8px",
+      };
+
+  const mainStyle = isMobileLayout
+    ? {
+        width: "calc(100vw - 16px)",
+        height: "calc(100vh - 176px)",
+        top: "76px",
+        left: "8px",
+        borderRadius: "16px",
+        backgroundColor: "#FAF6F0",
+      }
+    : {
+        width: "373px",
+        height: "700px",
+        top: "76px",
+        left: "8px",
+        borderRadius: "16px",
+        backgroundColor: "#FAF6F0",
+      };
+
+  const footerStyle = isMobileLayout
+    ? {
+        width: "100%",
+        height: "52px",
+        bottom: "24px",
+        left: "0px",
+      }
+    : {
+        width: "390px",
+        height: "52px",
+        bottom: "24px",
+        left: "0px",
+      };
+
+  return (
+    <div
+      className="relative flex flex-col justify-between overflow-hidden"
+      style={containerStyle}
     >
       <div
         className="absolute flex flex-col items-center justify-center"
-        style={{
-          width: "374px",
-          height: "77px",
-          top: "0px",
-          left: "8px",
-        }}
+        style={headerStyle}
       >
         <span className="text-[12px] font-bold text-[#2E0064] tracking-wide mb-2">
           Step {currentStepNum} of {totalSteps}
@@ -41,10 +91,11 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({ model, onNext }) => 
           {Array.from({ length: totalSteps }).map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${index + 1 === currentStepNum
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index + 1 === currentStepNum
                   ? "bg-[#9031F1] scale-110"
                   : "bg-[#E6DFD5]"
-                }`}
+              }`}
             />
           ))}
         </div>
@@ -52,16 +103,9 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({ model, onNext }) => 
 
       <div
         className="absolute flex flex-col items-center justify-between px-6 pt-10 pb-8"
-        style={{
-          width: "373px",
-          height: "700px",
-          top: "76px",
-          left: "8px",
-          borderRadius: "16px",
-          backgroundColor: "#FAF6F0",
-        }}
+        style={mainStyle}
       >
-        <div className="flex flex-col items-center text-center mt-4">
+        <div className="flex flex-col items-center text-center mt-4 w-full">
           <Logo className="w-20 h-20 mb-8" />
 
           <h1 className="font-fustat font-bold text-[30px] leading-[37.5px] text-[#2E0064] tracking-[-0.75px] mb-4 max-w-[280px]">
@@ -107,12 +151,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({ model, onNext }) => 
 
       <div
         className="absolute flex items-center justify-center px-4"
-        style={{
-          width: "390px",
-          height: "52px",
-          bottom: "24px",
-          left: "0px",
-        }}
+        style={footerStyle}
       >
         <button
           onClick={onNext}

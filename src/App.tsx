@@ -66,12 +66,19 @@ export const App: React.FC = () => {
   const [model, setModel] = useState<OnboardingModel>(() => new OnboardingModel(STEPS));
   const [, setTick] = useState<number>(0);
   const [scale, setScale] = useState<number>(1);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => {
-      const scaleX = window.innerWidth / 1440;
-      const scaleY = window.innerHeight / 1024;
-      setScale(Math.min(scaleX, scaleY));
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setScale(1);
+      } else {
+        const scaleX = window.innerWidth / 1440;
+        const scaleY = window.innerHeight / 1024;
+        setScale(Math.min(scaleX, scaleY));
+      }
     };
     window.addEventListener("resize", handleResize);
     handleResize();
@@ -87,6 +94,14 @@ export const App: React.FC = () => {
     setTick(prev => prev + 1);
   };
 
+  if (isMobile) {
+    return (
+      <div className="relative w-screen h-screen bg-[#F8F3EC] overflow-hidden">
+        <MobileScreen model={model} onNext={handleNext} isMobileLayout={true} />
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-screen h-screen bg-[#ECDAFF] overflow-hidden flex items-center justify-center">
       <div
@@ -99,7 +114,7 @@ export const App: React.FC = () => {
         }}
       >
         <BackgroundWatermark />
-        <MobileScreen model={model} onNext={handleNext} />
+        <MobileScreen model={model} onNext={handleNext} isMobileLayout={false} />
       </div>
     </div>
   );
