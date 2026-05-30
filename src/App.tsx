@@ -25,7 +25,7 @@ const STEPS: StepConfig[] = [
       {
         number: 2,
         title: "Spread It Out",
-        text: "Chugging a liter in one go? <break> Your body can't process that. Sip <break> consistently throughout the day <break> instead."
+        text: "Chugging a liter in one go? <break>Your body can't process that.Sip consistently <break> throughout the day instead."
       }
     ]
   },
