@@ -147,15 +147,15 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
               const isFirst = blob.number === 1;
               const blobStyle = isFirst
                 ? {
-                    width: "190px",
-                    height: "190px",
+                    width: "200px",
+                    height: "200px",
                     left: "12px",
                     top: "0px",
                     borderRadius: "45% 55% 70% 30% / 45% 45% 55% 55%",
                   }
                 : {
-                    width: "190px",
-                    height: "190px",
+                    width: "200px",
+                    height: "200px",
                     right: "12px",
                     top: "140px",
                     borderRadius: "55% 45% 30% 70% / 55% 55% 45% 45%",
@@ -165,7 +165,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
                 <div
                   key={blob.number}
                   style={blobStyle}
-                  className="absolute bg-[#ECDAFF]/50 p-5 flex flex-col items-center justify-center text-center backdrop-blur-[1px]"
+                  className="absolute bg-[#ECDAFF]/50 p-4 flex flex-col items-center justify-center text-center backdrop-blur-[1px]"
                 >
                   <div className="w-9 h-9 bg-[#9031F1] text-white flex items-center justify-center rounded-full font-bold text-[16px] mb-2 shadow-sm">
                     {blob.number}
@@ -173,7 +173,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
                   <h3 className="font-fustat font-bold text-[14px] text-[#2E0064] mb-1 leading-tight">
                     {blob.title}
                   </h3>
-                  <p className="font-fustat font-normal text-[11px] text-[#5C5464] leading-[1.3] max-w-[160px]">
+                  <p className="font-fustat font-normal text-[10.5px] text-[#5C5464] leading-[1.3] max-w-[170px]">
                     {blob.text.includes("<break>") ? (
                       blob.text.split("<break>").map((line, i) => (
                         <React.Fragment key={i}>
