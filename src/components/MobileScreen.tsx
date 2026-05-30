@@ -142,7 +142,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
         </div>
 
         {currentStep.blobs ? (
-          <div className="absolute inset-0 top-[235px] w-full h-[380px] pointer-events-auto">
+          <div className="absolute inset-0 top-[275px] w-full h-[380px] pointer-events-auto">
             {currentStep.blobs.map((blob) => {
               const isFirst = blob.number === 1;
               const blobStyle = isFirst
