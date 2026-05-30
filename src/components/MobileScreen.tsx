@@ -220,7 +220,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
       </div>
 
       <div
-        className="absolute flex items-center justify-between px-6"
+        className="absolute flex items-center justify-end gap-16 pr-6 pl-4"
         style={footerStyle}
       >
         {onBack && currentStepNum > 1 ? (
