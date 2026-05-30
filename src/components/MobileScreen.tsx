@@ -206,10 +206,16 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
             if (!quote) return null;
             return (
               <div className="relative w-full max-w-[300px] aspect-[1.1] flex items-center justify-center my-4">
-                <div
+                <motion.div
                   className="absolute inset-0 bg-[#ECDAFF] opacity-60"
                   style={{
                     borderRadius: "42% 58% 70% 30% / 45% 45% 55% 55%",
+                  }}
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 35,
+                    ease: "linear",
                   }}
                 />
                 <p className="relative z-10 px-8 text-center text-[16px] font-normal text-[#2E0064] leading-[1.2] tracking-normal font-fustat">
