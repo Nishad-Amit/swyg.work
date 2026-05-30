@@ -108,11 +108,11 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
       </div>
 
       <div
-        className="absolute flex flex-col items-center px-6 pt-10 pb-8 overflow-hidden"
+        className="absolute flex flex-col items-center px-6 pt-6 pb-8 overflow-hidden"
         style={mainStyle}
       >
-        <div className="flex flex-col items-center text-center mt-4 w-full">
-          <Logo className="w-20 h-20 mb-8" />
+        <div className="flex flex-col items-center text-center mt-2 w-full">
+          <Logo className="w-20 h-20 mb-4" />
 
           <h1 className="font-fustat font-bold text-[30px] leading-[37.5px] text-[#2E0064] tracking-[-0.75px] mb-4 max-w-[280px]">
             {currentStep.title.includes("<break>") ? (
@@ -142,23 +142,23 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
         </div>
 
         {currentStep.blobs ? (
-          <div className="absolute inset-0 top-[280px] w-full h-[380px] pointer-events-none select-none">
+          <div className="absolute inset-0 top-[235px] w-full h-[380px] pointer-events-none select-none">
             {currentStep.blobs.map((blob) => {
               const isFirst = blob.number === 1;
               const blobStyle = isFirst
                 ? {
-                    width: "210px",
-                    height: "210px",
-                    left: "8px",
+                    width: "215px",
+                    height: "215px",
+                    left: "4px",
                     top: "0px",
-                    borderRadius: "45% 55% 70% 30% / 45% 45% 55% 55%",
+                    borderRadius: "50% 50% 15% 50%",
                   }
                 : {
-                    width: "210px",
-                    height: "210px",
-                    right: "8px",
+                    width: "215px",
+                    height: "215px",
+                    right: "4px",
                     top: "135px",
-                    borderRadius: "55% 45% 30% 70% / 55% 55% 45% 45%",
+                    borderRadius: "50% 15% 50% 50%",
                   };
 
               return (
@@ -173,7 +173,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
                   <h3 className="font-fustat font-bold text-[14px] text-[#2E0064] mb-1 leading-tight">
                     {blob.title}
                   </h3>
-                  <p className="font-fustat font-normal text-[11px] text-[#5C5464] leading-[1.3] max-w-[160px]">
+                  <p className="font-fustat font-normal text-[11px] text-[#5C5464] leading-[1.3] max-w-[165px]">
                     {blob.text.includes("<break>") ? (
                       blob.text.split("<break>").map((line, i) => (
                         <React.Fragment key={i}>
@@ -227,9 +227,28 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
           <>
             <button
               onClick={onBack}
-              className="text-[#5C5464] hover:text-[#2E0064] font-bold text-[16px] flex items-center gap-1 font-fustat cursor-pointer transition-colors duration-100"
+              className="border-2 border-[#E6DFD5] bg-transparent text-[#5C5464] hover:text-[#2E0064] hover:border-[#5C5464] font-bold text-[16px] flex items-center justify-center rounded-[32px] font-fustat cursor-pointer transition-all duration-100 active:translate-y-[1px]"
+              style={{
+                width: "100.933334px",
+                height: "52px",
+                gap: "8px",
+                padding: "12px 24px",
+              }}
             >
-              &lt; Back
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-4 h-4"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              Back
             </button>
             <button
               onClick={onNext}
