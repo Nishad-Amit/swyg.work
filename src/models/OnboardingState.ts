@@ -1,9 +1,16 @@
+export interface BlobItem {
+  number: number;
+  title: string;
+  text: string;
+}
+
 export interface StepConfig {
   stepNumber: number;
   totalSteps: number;
   title: string;
   subtitle: string;
-  quote: string;
+  quote?: string;
+  blobs?: BlobItem[];
 }
 
 export class OnboardingModel {

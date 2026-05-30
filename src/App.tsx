@@ -14,9 +14,20 @@ const STEPS: StepConfig[] = [
   {
     stepNumber: 2,
     totalSteps: 8,
-    title: "Set Your Goals",
-    subtitle: "Choose how much water you want to drink daily based on your body weight and daily activity levels.",
-    quote: "Hydration is not one-size-fits-all. Customizing your goals makes success twice as likely."
+    title: "The Two Golden Rules",
+    subtitle: "Good hydration isn't rocket science. It's <break> just two things:",
+    blobs: [
+      {
+        number: 1,
+        title: "Hit Your Daily Volume",
+        text: "Drink enough to replace <break> what you lose. Simple math."
+      },
+      {
+        number: 2,
+        title: "Spread It Out",
+        text: "Chugging a liter in one go? <break> Your body can't process that. Sip <break> consistently throughout the day <break> instead."
+      }
+    ]
   },
   {
     stepNumber: 3,
@@ -96,6 +107,11 @@ export const App: React.FC = () => {
     setTick(prev => prev + 1);
   };
 
+  const handlePrev = () => {
+    model.prevStep();
+    setTick(prev => prev + 1);
+  };
+
   if (isMobile) {
     return (
       <div className="relative w-screen h-screen bg-[#F8F3EC] overflow-hidden flex items-center justify-center">
@@ -108,7 +124,7 @@ export const App: React.FC = () => {
             transformOrigin: "center center",
           }}
         >
-          <MobileScreen model={model} onNext={handleNext} isMobileLayout={false} />
+          <MobileScreen model={model} onNext={handleNext} onBack={handlePrev} isMobileLayout={false} />
         </div>
       </div>
     );
@@ -126,7 +142,7 @@ export const App: React.FC = () => {
         }}
       >
         <BackgroundWatermark />
-        <MobileScreen model={model} onNext={handleNext} isMobileLayout={false} />
+        <MobileScreen model={model} onNext={handleNext} onBack={handlePrev} isMobileLayout={false} />
       </div>
     </div>
   );
