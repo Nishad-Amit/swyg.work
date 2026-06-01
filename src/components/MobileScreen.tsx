@@ -72,7 +72,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
     ? {
         width: "100%",
         height: "52px",
-        bottom: "40px",
+        bottom: "70px",
         left: "0px",
       }
     : {
