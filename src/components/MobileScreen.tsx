@@ -22,8 +22,8 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
 
   const containerStyle = isMobileLayout
     ? {
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        height: "100%",
         borderRadius: "0px",
         backgroundColor: "#F8F3EC",
         boxShadow: "none",
@@ -52,8 +52,8 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
 
   const mainStyle = isMobileLayout
     ? {
-        width: "calc(100vw - 16px)",
-        height: "calc(100vh - 176px)",
+        width: "calc(100% - 16px)",
+        height: "calc(100% - 176px)",
         top: "76px",
         left: "8px",
         borderRadius: "16px",

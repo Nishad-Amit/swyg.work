@@ -84,9 +84,9 @@ export const App: React.FC = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       if (mobile) {
-        const scaleX = (window.innerWidth - 48) / 390;
-        const scaleY = (window.innerHeight - 48) / 852;
-        setScale(Math.min(scaleX, scaleY) * 0.9);
+        const scaleX = window.innerWidth / 390;
+        const scaleY = window.innerHeight / 852;
+        setScale(Math.min(scaleX, scaleY));
       } else {
         const scaleX = window.innerWidth / 1440;
         const scaleY = window.innerHeight / 1024;
@@ -124,7 +124,7 @@ export const App: React.FC = () => {
             transformOrigin: "center center",
           }}
         >
-          <MobileScreen model={model} onNext={handleNext} onBack={handlePrev} isMobileLayout={false} />
+          <MobileScreen model={model} onNext={handleNext} onBack={handlePrev} isMobileLayout={true} />
         </div>
       </div>
     );
