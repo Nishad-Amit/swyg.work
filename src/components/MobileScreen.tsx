@@ -29,6 +29,10 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
   const [gender, setGender] = useState("Female");
   const [phoneNumber, setPhoneNumber] = useState("+1 234 567 8900");
 
+  // Step 5 Water Habit State
+  const [dailyWater, setDailyWater] = useState("1500");
+  const [waterInterval, setWaterInterval] = useState(180);
+
   const containerStyle = isMobileLayout
     ? {
         width: "100%",
@@ -235,6 +239,101 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   className="w-full h-[48px] px-5 rounded-full border border-[#E6DFD5] bg-white text-[#2E0064] font-fustat text-[15px] focus:outline-none focus:border-[#9031F1] transition-colors"
                 />
+              </div>
+            </div>
+          </>
+        ) : currentStepNum === 5 ? (
+          <>
+            <h1 
+              className="absolute font-fustat font-bold text-[30px] leading-[37.5px] text-[#280056] tracking-[-0.75px] text-left"
+              style={{
+                width: "313px",
+                height: "38px",
+                top: "32px",
+                left: "30px",
+              }}
+            >
+              Your Water Habits
+            </h1>
+            <div 
+              className="absolute w-[313px] h-[554px] pointer-events-auto flex flex-col gap-6 text-left"
+              style={{ 
+                top: "97px",
+                left: "30px",
+              }}
+            >
+              {/* Daily intake question */}
+              <div className="flex flex-col w-full text-left">
+                <label className="text-[15px] font-semibold text-[#4A4350] mb-2.5 font-fustat pl-1 leading-[21px]">
+                  How much water do you typically <br /> drink per day?
+                </label>
+                <div className="relative w-full h-[50px]">
+                  <input
+                    type="text"
+                    value={dailyWater}
+                    onChange={(e) => setDailyWater(e.target.value)}
+                    className="w-full h-full pl-6 pr-14 rounded-full border border-[#E6DFD5] bg-white text-[#280056] font-bold font-fustat text-[16px] focus:outline-none focus:border-[#9031F1] transition-colors"
+                  />
+                  <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[#9A93A0] font-fustat text-[15px] font-semibold">
+                    ml
+                  </span>
+                </div>
+                <span className="text-[12px] text-[#9A93A0] font-fustat mt-1.5 pl-1">
+                  Optional – Default: 1500ml
+                </span>
+              </div>
+
+              {/* Frequency question */}
+              <div className="flex flex-col w-full text-left mt-2">
+                <label className="text-[15px] font-semibold text-[#4A4350] mb-3.5 font-fustat pl-1">
+                  How often do you drink water?
+                </label>
+                
+                <div className="flex flex-col gap-3 w-full">
+                  {/* Row 1 */}
+                  <div className="flex gap-2.5 justify-start w-full">
+                    {[30, 60, 90].map((mins) => {
+                      const isSelected = waterInterval === mins;
+                      return (
+                        <button
+                          key={mins}
+                          onClick={() => setWaterInterval(mins)}
+                          className={`h-[44px] flex-1 max-w-[95px] rounded-full font-fustat text-[14px] font-bold transition-all duration-150 border cursor-pointer ${
+                            isSelected
+                              ? "bg-[#9031F1] text-white border-[#9031F1] shadow-[0px_4px_12px_rgba(144,49,241,0.3)] active:translate-y-0.5"
+                              : "bg-white text-[#280056] border-[#E6DFD5] hover:bg-[#FAF6F0]/50 active:translate-y-0.5"
+                          }`}
+                        >
+                          {mins} min
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Row 2 */}
+                  <div className="flex gap-2.5 justify-start w-full">
+                    {[180, 240].map((mins) => {
+                      const isSelected = waterInterval === mins;
+                      return (
+                        <button
+                          key={mins}
+                          onClick={() => setWaterInterval(mins)}
+                          className={`h-[44px] flex-1 max-w-[95px] rounded-full font-fustat text-[14px] font-bold transition-all duration-150 border cursor-pointer ${
+                            isSelected
+                              ? "bg-[#9031F1] text-white border-[#9031F1] shadow-[0px_4px_12px_rgba(144,49,241,0.3)] active:translate-y-0.5"
+                              : "bg-white text-[#280056] border-[#E6DFD5] hover:bg-[#FAF6F0]/50 active:translate-y-0.5"
+                          }`}
+                        >
+                          {mins} min
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <span className="text-[12px] text-[#9A93A0] font-fustat mt-3.5 pl-1">
+                  Optional – Default: 180 min
+                </span>
               </div>
             </div>
           </>

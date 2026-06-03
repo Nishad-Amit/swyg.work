@@ -44,9 +44,8 @@ const STEPS: StepConfig[] = [
   {
     stepNumber: 5,
     totalSteps: 8,
-    title: "Earn Rewards",
-    subtitle: "Stay consistent to unlock custom themes, badges, and plant digital trees for every milestone.",
-    quote: "Make hydration fun. Gamifying your health keeps you coming back."
+    title: "Your Water Habits",
+    subtitle: ""
   },
   {
     stepNumber: 6,
