@@ -56,16 +56,14 @@ const STEPS: StepConfig[] = [
   {
     stepNumber: 7,
     totalSteps: 8,
-    title: "Integrate Health Apps",
-    subtitle: "Sync automatically with Apple Health, Google Fit, and smart water bottles for effortless tracking.",
-    quote: "Connect your ecosystem. Seamless tracking keeps you focused on your wellness."
+    title: "Your Goal",
+    subtitle: ""
   },
   {
     stepNumber: 8,
     totalSteps: 8,
-    title: "You're All Set!",
-    subtitle: "Ready to start your journey? Let's take the first step towards a healthier, more energized version of you.",
-    quote: "Your body will thank you. Let's make hydration an effortless part of your day."
+    title: "Notifications",
+    subtitle: ""
   }
 ];
 

@@ -38,6 +38,15 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
   const [fromTime, setFromTime] = useState("09:00 AM");
   const [untilTime, setUntilTime] = useState("09:00 PM");
 
+  // Step 7 Goal State
+  const [dailyTarget, setDailyTarget] = useState("1500");
+  const [reminderInterval, setReminderInterval] = useState(45);
+
+  // Step 8 Notifications Toggle State
+  const [reminderIntervalNotif, setReminderIntervalNotif] = useState(true);
+  const [achievementNotif, setAchievementNotif] = useState(true);
+  const [soundAlertsNotif, setSoundAlertsNotif] = useState(true);
+
   const containerStyle = isMobileLayout
     ? {
         width: "100%",
@@ -459,6 +468,266 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
               </div>
             </div>
           </>
+        ) : currentStepNum === 7 ? (
+          <>
+            <h1 
+              className="absolute font-fustat font-bold text-[30px] leading-[37.5px] text-[#280056] tracking-[-0.75px] text-left"
+              style={{
+                width: "313px",
+                height: "38px",
+                top: "32px",
+                left: "30px",
+              }}
+            >
+              Your Goal
+            </h1>
+
+            {/* Recommended Daily Goal Card (Placed absolutely relative to mainStyle container) */}
+            <div 
+              className="absolute flex flex-col items-center justify-center text-center"
+              style={{ 
+                width: "306px",
+                height: "152px",
+                top: "102px",
+                left: "33px",
+                borderRadius: "5px",
+                border: "1px dashed #925FD4",
+                backgroundColor: "#F5EDFD",
+              }}
+            >
+              {/* Star top-left */}
+              <img
+                src="/img/Star 1.png"
+                alt="Star"
+                className="absolute top-4 left-4 w-5 h-5 object-contain"
+              />
+              {/* Star bottom-right */}
+              <img
+                src="/img/Star 1.png"
+                alt="Star"
+                className="absolute bottom-4 right-4 w-5 h-5 object-contain"
+              />
+
+              <span className="text-[13px] font-semibold text-[#8A8390] font-fustat mb-1 text-center">
+                Your recommended daily goal
+              </span>
+              
+              <span 
+                className="text-center font-bold tracking-tight"
+                style={{
+                  fontFamily: "'Big Shoulders Display', sans-serif",
+                  fontWeight: 900,
+                  fontSize: "46px",
+                  lineHeight: "50px",
+                  color: "#510BDC",
+                  margin: "4px 0"
+                }}
+              >
+                2625 ML
+              </span>
+
+              <span className="text-[11px] font-medium text-[#8A8390] font-fustat text-center">
+                Auto-calculated based on active hours
+              </span>
+            </div>
+
+            {/* Daily Target Input (Fixed static position) */}
+            <div 
+              className="absolute flex flex-col w-full text-left"
+              style={{
+                width: "306px",
+                top: "270px",
+                left: "33px"
+              }}
+            >
+              <label className="text-[15px] font-bold text-[#280056] mb-2 font-fustat pl-1">
+                Daily Target(ml)
+              </label>
+              <div className="relative w-full h-[50px]">
+                <input
+                  type="text"
+                  value={dailyTarget}
+                  onChange={(e) => setDailyTarget(e.target.value)}
+                  className="w-full h-full pl-6 pr-14 rounded-full border border-[#E6DFD5] bg-white text-[#280056] font-bold font-fustat text-[16px] focus:outline-none focus:border-[#9031F1] transition-colors"
+                />
+                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[#9A93A0] font-fustat text-[15px] font-semibold">
+                  ml
+                </span>
+              </div>
+              <span className="text-[10.5px] text-[#9A93A0] font-fustat mt-1.5 pl-1 whitespace-nowrap">
+                Recommended: 500ml – 4000ml based on activity level
+              </span>
+            </div>
+
+            {/* Remind me every Section Label (Fixed static position) */}
+            <div 
+              className="absolute flex flex-col text-left"
+              style={{
+                width: "291px",
+                height: "28px",
+                top: "395px",
+                left: "33px",
+              }}
+            >
+              <label 
+                className="font-fustat pl-1"
+                style={{
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  lineHeight: "28px",
+                  color: "#280056",
+                  letterSpacing: "0px",
+                }}
+              >
+                Remind me every
+              </label>
+            </div>
+
+            {/* Scrollable button list container */}
+            <div 
+              className="absolute pointer-events-auto overflow-y-auto scrollbar-none flex flex-col pb-[16px]"
+              style={{ 
+                width: "306px",
+                height: "200px",
+                top: "440px",
+                left: "33px",
+                msOverflowStyle: "none",
+                scrollbarWidth: "none"
+              }}
+            >
+              <div className="flex flex-col gap-4 w-full">
+                {[
+                  { val: 45, label: "45 mins", badge: "PRO" },
+                  { val: 60, label: "60 mins", badge: "AVG" },
+                  { val: 90, label: "90 mins", badge: "BEGINNER" },
+                  { val: 120, label: "120 mins", badge: "EASY" }
+                ].map((item) => {
+                  const isSelected = reminderInterval === item.val;
+                  return (
+                    <button
+                      key={item.val}
+                      onClick={() => setReminderInterval(item.val)}
+                      className={`w-full h-[54px] px-6 rounded-full flex items-center justify-between transition-all duration-150 cursor-pointer border ${
+                        isSelected
+                          ? "bg-[#6C0AD0] border-[#6C0AD0] text-white shadow-sm"
+                          : "bg-white border-[#E6DFD5] text-[#280056] hover:bg-[#FAF6F0]/50"
+                      }`}
+                    >
+                      <span className="font-fustat font-bold text-[16px]">
+                        {item.label}
+                      </span>
+                      <span 
+                        className="px-3 py-1 rounded-full text-[10px] font-black tracking-wider uppercase"
+                        style={{
+                          backgroundColor: isSelected 
+                            ? (item.badge === "PRO" ? "#C5F400" : "#FAF6F0") 
+                            : "#EBE6DD",
+                          color: isSelected 
+                            ? (item.badge === "PRO" ? "#280056" : "#8A8390") 
+                            : "#8A8390"
+                        }}
+                      >
+                        {item.badge}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        ) : currentStepNum === 8 ? (
+          <>
+            <h1 
+              className="absolute font-fustat font-bold text-[30px] leading-[37.5px] text-[#280056] tracking-[-0.75px] text-left"
+              style={{
+                width: "313px",
+                height: "38px",
+                top: "32px",
+                left: "30px",
+              }}
+            >
+              Notifications
+            </h1>
+            <div 
+              className="absolute w-[313px] h-[554px] pointer-events-auto flex flex-col pt-2"
+              style={{ 
+                top: "97px",
+                left: "30px",
+              }}
+            >
+              {/* Row 1: Reminder Interval */}
+              <div className="flex items-center justify-between py-5 border-b border-[#E6DFD5]/60">
+                <div className="flex flex-col text-left">
+                  <span className="text-[16px] font-bold text-[#280056] font-fustat mb-1">
+                    Reminder Interval
+                  </span>
+                  <span className="text-[13px] font-semibold text-[#8A8390] font-fustat">
+                    Every 45 mins
+                  </span>
+                </div>
+                <button 
+                  onClick={() => setReminderIntervalNotif(!reminderIntervalNotif)}
+                  className={`relative w-[48px] h-[26px] rounded-full transition-colors duration-200 focus:outline-none cursor-pointer border-none ${
+                    reminderIntervalNotif ? "bg-[#6C0AD0]" : "bg-[#E6DFD5]"
+                  }`}
+                >
+                  <span 
+                    className={`absolute top-[3px] left-[3px] w-[20px] h-[20px] rounded-full bg-white transition-transform duration-200 ${
+                      reminderIntervalNotif ? "translate-x-[22px]" : "translate-x-0"
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {/* Row 2: Achievement Notifications */}
+              <div className="flex items-center justify-between py-5 border-b border-[#E6DFD5]/60">
+                <div className="flex flex-col text-left">
+                  <span className="text-[16px] font-bold text-[#280056] font-fustat mb-1">
+                    Achievement Notifications
+                  </span>
+                  <span className="text-[13px] font-semibold text-[#8A8390] font-fustat">
+                    Get notified on milestones
+                  </span>
+                </div>
+                <button 
+                  onClick={() => setAchievementNotif(!achievementNotif)}
+                  className={`relative w-[48px] h-[26px] rounded-full transition-colors duration-200 focus:outline-none cursor-pointer border-none ${
+                    achievementNotif ? "bg-[#6C0AD0]" : "bg-[#E6DFD5]"
+                  }`}
+                >
+                  <span 
+                    className={`absolute top-[3px] left-[3px] w-[20px] h-[20px] rounded-full bg-white transition-transform duration-200 ${
+                      achievementNotif ? "translate-x-[22px]" : "translate-x-0"
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {/* Row 3: Sound Alerts */}
+              <div className="flex items-center justify-between py-5 border-b border-[#E6DFD5]/60">
+                <div className="flex flex-col text-left">
+                  <span className="text-[16px] font-bold text-[#280056] font-fustat mb-1">
+                    Sound Alerts
+                  </span>
+                  <span className="text-[13px] font-semibold text-[#8A8390] font-fustat">
+                    Play sound with reminders
+                  </span>
+                </div>
+                <button 
+                  onClick={() => setSoundAlertsNotif(!soundAlertsNotif)}
+                  className={`relative w-[48px] h-[26px] rounded-full transition-colors duration-200 focus:outline-none cursor-pointer border-none ${
+                    soundAlertsNotif ? "bg-[#6C0AD0]" : "bg-[#E6DFD5]"
+                  }`}
+                >
+                  <span 
+                    className={`absolute top-[3px] left-[3px] w-[20px] h-[20px] rounded-full bg-white transition-transform duration-200 ${
+                      soundAlertsNotif ? "translate-x-[22px]" : "translate-x-0"
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
+          </>
         ) : (
           <>
             <div className="flex flex-col items-center text-center mt-0 w-full">
@@ -699,7 +968,17 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
         className="absolute flex items-center justify-end gap-16 pr-6 pl-4"
         style={footerStyle}
       >
-        {onBack && currentStepNum > 1 ? (
+        {currentStepNum === 8 ? (
+          <button
+            onClick={onNext}
+            className="w-full h-[52px] bg-[#9031F1] text-white font-bold text-[16px] rounded-[32px] border-2 border-black active:translate-y-1 active:translate-x-1 active:shadow-none transition-all duration-100 cursor-pointer"
+            style={{
+              boxShadow: "4px 4px 0px 0px #000000",
+            }}
+          >
+            Get Started
+          </button>
+        ) : onBack && currentStepNum > 1 ? (
           <>
             <button
               onClick={onBack}
@@ -709,7 +988,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
             </button>
             <button
               onClick={onNext}
-              className="w-[180px] h-[52px] bg-[#9031F1] text-white font-bold text-[16px] rounded-[32px] border-2 border-black active:translate-y-1 active:translate-x-1 active:shadow-none transition-all duration-100"
+              className="w-[180px] h-[52px] bg-[#9031F1] text-white font-bold text-[16px] rounded-[32px] border-2 border-black active:translate-y-1 active:translate-x-1 active:shadow-none transition-all duration-100 cursor-pointer"
               style={{
                 boxShadow: "4px 4px 0px 0px #000000",
               }}
@@ -720,7 +999,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
         ) : (
           <button
             onClick={onNext}
-            className="w-full h-[52px] bg-[#9031F1] text-white font-bold text-[16px] rounded-[32px] border-2 border-black active:translate-y-1 active:translate-x-1 active:shadow-none transition-all duration-100"
+            className="w-full h-[52px] bg-[#9031F1] text-white font-bold text-[16px] rounded-[32px] border-2 border-black active:translate-y-1 active:translate-x-1 active:shadow-none transition-all duration-100 cursor-pointer"
             style={{
               boxShadow: "4px 4px 0px 0px #000000",
             }}
