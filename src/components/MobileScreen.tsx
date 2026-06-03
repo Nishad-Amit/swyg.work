@@ -135,7 +135,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
               Let's get to know you 👋
             </h1>
             <div 
-              className="absolute w-[313px] h-[554px] pointer-events-auto overflow-y-auto scrollbar-none flex flex-col gap-[24px] pb-[16px]"
+              className="absolute w-[313px] h-[554px] pointer-events-auto overflow-y-auto scrollbar-none flex flex-col gap-[18px] pb-[16px]"
               style={{ 
                 top: "97px",
                 left: "30px",
@@ -146,7 +146,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
               {/* First Name & Last Name */}
               <div className="flex gap-3 w-full">
                 <div className="flex-1 flex flex-col text-left">
-                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">First Name *</label>
+                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[6px] font-fustat text-left pl-1">First Name *</label>
                   <input
                     type="text"
                     value={firstName}
@@ -155,7 +155,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
                   />
                 </div>
                 <div className="flex-1 flex flex-col text-left">
-                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Last Name *</label>
+                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[6px] font-fustat text-left pl-1">Last Name *</label>
                   <input
                     type="text"
                     value={lastName}
@@ -167,7 +167,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
 
               {/* Nickname */}
               <div className="flex flex-col w-full text-left">
-                <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Nickname *</label>
+                <label className="text-[12px] font-semibold text-[#5C5464] mb-[6px] font-fustat text-left pl-1">Nickname *</label>
                 <input
                   type="text"
                   value={nickname}
@@ -178,7 +178,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
 
               {/* Avatar Name */}
               <div className="flex flex-col w-full text-left">
-                <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Avatar Name</label>
+                <label className="text-[12px] font-semibold text-[#5C5464] mb-[6px] font-fustat text-left pl-1">Avatar Name</label>
                 <input
                   type="text"
                   value={avatarName}
@@ -197,7 +197,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
               {/* Age & Gender */}
               <div className="flex gap-3 w-full">
                 <div className="flex-1 flex flex-col text-left">
-                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Age</label>
+                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[6px] font-fustat text-left pl-1">Age</label>
                   <input
                     type="text"
                     value={age}
@@ -206,7 +206,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
                   />
                 </div>
                 <div className="flex-1 flex flex-col relative text-left">
-                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Gender</label>
+                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[6px] font-fustat text-left pl-1">Gender</label>
                   <div className="relative">
                     <select
                       value={gender}
@@ -228,7 +228,7 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
 
               {/* Phone Number */}
               <div className="flex flex-col w-full text-left">
-                <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Phone Number *</label>
+                <label className="text-[12px] font-semibold text-[#5C5464] mb-[6px] font-fustat text-left pl-1">Phone Number *</label>
                 <input
                   type="text"
                   value={phoneNumber}
