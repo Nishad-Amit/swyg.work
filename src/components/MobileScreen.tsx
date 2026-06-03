@@ -113,7 +113,15 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
         style={mainStyle}
       >
         <div className="flex flex-col items-center text-center mt-0 w-full">
-          <Logo className="w-20 h-20 mb-2" />
+          {currentStepNum === 3 ? (
+            <img
+              src="/img/Union copy.png"
+              alt="SWWYG Logo"
+              className="h-[26px] object-contain mb-3"
+            />
+          ) : (
+            <Logo className="w-20 h-20 mb-2" />
+          )}
 
           <h1 className="font-fustat font-bold text-[30px] leading-[37.5px] text-[#2E0064] tracking-[-0.75px] mb-4 max-w-[280px]">
             {currentStep.title.includes("<break>") ? (
@@ -142,7 +150,105 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
           </p>
         </div>
 
-        {currentStep.blobs ? (
+        {currentStepNum === 3 ? (
+          <div className="absolute inset-x-0 top-[245px] flex flex-col items-center w-full pointer-events-auto px-6">
+            <div className="text-[17px] font-bold text-[#2E0064] mb-3.5 font-fustat tracking-normal">
+              Two ways to log:
+            </div>
+            
+            <div className="flex gap-4 w-full justify-center">
+              {/* Card 1: Tap the Notification */}
+              <div className="relative flex-1 max-w-[152px] h-[345px] rounded-[16px] border-2 border-dashed border-[#B097FF] bg-[#F2EEFF] flex flex-col justify-end items-center pb-8">
+                <img
+                  src="/img/Star 1.png"
+                  alt="Star"
+                  className="absolute top-4 left-4 w-10 h-10 object-contain"
+                />
+                <img
+                  src="/img/Star 1.png"
+                  alt="Star Small"
+                  className="absolute bottom-[110px] right-3.5 w-[20px] h-[20px] object-contain"
+                />
+                <div className="text-center px-1">
+                  <div
+                    style={{
+                      fontFamily: "'Big Shoulders Display', sans-serif",
+                      fontWeight: 800,
+                      fontSize: "25px",
+                      lineHeight: "28px",
+                      letterSpacing: "0px",
+                      textAlign: "center",
+                      textTransform: "uppercase",
+                      color: "#121212"
+                    }}
+                  >
+                    TAP THE
+                    <br />
+                    NOTIFICATION
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'Fustat', sans-serif",
+                      fontWeight: 400,
+                      fontSize: "12px",
+                      lineHeight: "14px",
+                      letterSpacing: "-0.2px",
+                      color: "#5A5B60",
+                      marginTop: "6px"
+                    }}
+                  >
+                    (easiest)
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Open the App */}
+              <div className="relative flex-1 max-w-[152px] h-[345px] rounded-[16px] border-2 border-dashed border-[#B097FF] bg-[#F2EEFF] flex flex-col justify-end items-center pb-8">
+                <img
+                  src="/img/Star 1.png"
+                  alt="Star Small"
+                  className="absolute bottom-[66px] left-3.5 w-[20px] h-[20px] object-contain"
+                />
+                <img
+                  src="/img/Star 1.png"
+                  alt="Star"
+                  className="absolute top-[160px] right-3.5 w-9 h-9 object-contain"
+                />
+                <div className="text-center px-1">
+                  <div
+                    style={{
+                      fontFamily: "'Big Shoulders Display', sans-serif",
+                      fontWeight: 800,
+                      fontSize: "25px",
+                      lineHeight: "28px",
+                      letterSpacing: "0px",
+                      textAlign: "center",
+                      textTransform: "uppercase",
+                      color: "#121212"
+                    }}
+                  >
+                    OPEN
+                    <br />
+                    THE APP
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'Fustat', sans-serif",
+                      fontWeight: 400,
+                      fontSize: "12px",
+                      lineHeight: "14px",
+                      letterSpacing: "-0.2px",
+                      color: "#5A5B60",
+                      marginTop: "6px"
+                    }}
+                  >
+                    (hit the logo)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : currentStep.blobs ? (
           <div className="absolute inset-0 top-[275px] w-full h-[380px] pointer-events-auto">
             {currentStep.blobs.map((blob) => {
               const isFirst = blob.number === 1;

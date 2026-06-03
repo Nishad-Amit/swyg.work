@@ -32,9 +32,8 @@ const STEPS: StepConfig[] = [
   {
     stepNumber: 3,
     totalSteps: 8,
-    title: "Smart Reminders",
-    subtitle: "Receive gentle nudges throughout your day. No spam, only helpful alerts when you actually need to drink.",
-    quote: "Timing is everything. Consistency beats volume when it comes to healthy hydration."
+    title: "Your New<break>Hydration Buddy",
+    subtitle: "SWYG sends you smart reminders<break>and makes tracking ridiculously easy."
   },
   {
     stepNumber: 4,
