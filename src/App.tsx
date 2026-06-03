@@ -38,9 +38,8 @@ const STEPS: StepConfig[] = [
   {
     stepNumber: 4,
     totalSteps: 8,
-    title: "Track Your Progress",
-    subtitle: "Log your drinks with a single tap. See beautiful visualizations of your consistency over time.",
-    quote: "Every sip counts. Small victories build life-changing habits."
+    title: "Let's get to know you 👋",
+    subtitle: ""
   },
   {
     stepNumber: 5,

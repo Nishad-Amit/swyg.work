@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { OnboardingModel } from "../models/OnboardingState";
 import { Logo } from "./Logo";
@@ -19,6 +19,15 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
   const currentStep = model.getCurrentStep();
   const currentStepNum = model.getCurrentStepNumber();
   const totalSteps = model.getTotalSteps();
+
+  // Step 4 Form State
+  const [firstName, setFirstName] = useState("Chiranya");
+  const [lastName, setLastName] = useState("Gupta");
+  const [nickname, setNickname] = useState("hihi");
+  const [avatarName, setAvatarName] = useState("CG");
+  const [age, setAge] = useState("25");
+  const [gender, setGender] = useState("Female");
+  const [phoneNumber, setPhoneNumber] = useState("+1 234 567 8900");
 
   const containerStyle = isMobileLayout
     ? {
@@ -112,144 +121,265 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
         className="absolute flex flex-col items-center px-6 pt-4 pb-8 overflow-hidden"
         style={mainStyle}
       >
-        <div className="flex flex-col items-center text-center mt-0 w-full">
-          {currentStepNum === 3 ? (
-            <img
-              src="/img/Union copy.png"
-              alt="SWWYG Logo"
-              className="h-[26px] object-contain mb-3"
-            />
-          ) : (
-            <Logo className="w-20 h-20 mb-2" />
-          )}
+        {currentStepNum === 4 ? (
+          <>
+            <h1 
+              className="absolute font-fustat font-bold text-[30px] leading-[37.5px] text-[#280056] tracking-[-0.75px] text-center whitespace-nowrap flex items-center justify-center"
+              style={{
+                width: "313px",
+                height: "38px",
+                top: "32px",
+                left: "30px",
+              }}
+            >
+              Let's get to know you 👋
+            </h1>
+            <div 
+              className="absolute w-[313px] h-[554px] pointer-events-auto overflow-y-auto scrollbar-none flex flex-col gap-[24px] pb-[16px]"
+              style={{ 
+                top: "97px",
+                left: "30px",
+                msOverflowStyle: "none",
+                scrollbarWidth: "none"
+              }}
+            >
+              {/* First Name & Last Name */}
+              <div className="flex gap-3 w-full">
+                <div className="flex-1 flex flex-col text-left">
+                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">First Name *</label>
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full h-[48px] px-5 rounded-full border border-[#E6DFD5] bg-white text-[#2E0064] font-fustat text-[15px] focus:outline-none focus:border-[#9031F1] transition-colors"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col text-left">
+                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Last Name *</label>
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="w-full h-[48px] px-5 rounded-full border border-[#E6DFD5] bg-white text-[#2E0064] font-fustat text-[15px] focus:outline-none focus:border-[#9031F1] transition-colors"
+                  />
+                </div>
+              </div>
 
-          <h1 className="font-fustat font-bold text-[30px] leading-[37.5px] text-[#2E0064] tracking-[-0.75px] mb-4 max-w-[280px]">
-            {currentStep.title.includes("<break>") ? (
-              currentStep.title.split("<break>").map((line, i) => (
-                <React.Fragment key={i}>
-                  {line}
-                  {i < currentStep.title.split("<break>").length - 1 && <br />}
-                </React.Fragment>
-              ))
-            ) : (
-              currentStep.title
-            )}
-          </h1>
-
-          <p className="text-[16px] text-[#5C5464] leading-[22px] max-w-[320px] px-2 font-normal font-fustat tracking-normal">
-            {currentStep.subtitle.includes("<break>") ? (
-              currentStep.subtitle.split("<break>").map((line, i) => (
-                <React.Fragment key={i}>
-                  {line}
-                  {i < currentStep.subtitle.split("<break>").length - 1 && <br />}
-                </React.Fragment>
-              ))
-            ) : (
-              currentStep.subtitle
-            )}
-          </p>
-        </div>
-
-        {currentStepNum === 3 ? (
-          <div className="absolute inset-x-0 top-[245px] flex flex-col items-center w-full pointer-events-auto px-6">
-            <div className="text-[17px] font-bold text-[#2E0064] mb-3.5 font-fustat tracking-normal">
-              Two ways to log:
-            </div>
-            
-            <div className="flex gap-4 w-full justify-center">
-              {/* Card 1: Tap the Notification */}
-              <div className="relative flex-1 max-w-[152px] h-[345px] rounded-[16px] border-2 border-dashed border-[#B097FF] bg-[#F2EEFF] flex flex-col justify-end items-center pb-8">
-                <img
-                  src="/img/Star 1.png"
-                  alt="Star"
-                  className="absolute top-4 left-4 w-10 h-10 object-contain"
+              {/* Nickname */}
+              <div className="flex flex-col w-full text-left">
+                <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Nickname *</label>
+                <input
+                  type="text"
+                  value={nickname}
+                  onChange={(e) => setNickname(e.target.value)}
+                  className="w-full h-[48px] px-5 rounded-full border border-[#E6DFD5] bg-white text-[#2E0064] font-fustat text-[15px] focus:outline-none focus:border-[#9031F1] transition-colors"
                 />
-                <img
-                  src="/img/Star 1.png"
-                  alt="Star Small"
-                  className="absolute bottom-[110px] right-3.5 w-[20px] h-[20px] object-contain"
+              </div>
+
+              {/* Avatar Name */}
+              <div className="flex flex-col w-full text-left">
+                <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Avatar Name</label>
+                <input
+                  type="text"
+                  value={avatarName}
+                  onChange={(e) => setAvatarName(e.target.value)}
+                  className="w-full h-[48px] px-5 rounded-full border border-[#E6DFD5] bg-white text-[#2E0064] font-fustat text-[15px] focus:outline-none focus:border-[#9031F1] transition-colors"
                 />
-                <div className="text-center px-1">
-                  <div
-                    style={{
-                      fontFamily: "'Big Shoulders Display', sans-serif",
-                      fontWeight: 800,
-                      fontSize: "25px",
-                      lineHeight: "28px",
-                      letterSpacing: "0px",
-                      textAlign: "center",
-                      textTransform: "uppercase",
-                      color: "#121212"
-                    }}
-                  >
-                    TAP THE
-                    <br />
-                    NOTIFICATION
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'Fustat', sans-serif",
-                      fontWeight: 400,
-                      fontSize: "12px",
-                      lineHeight: "14px",
-                      letterSpacing: "-0.2px",
-                      color: "#5A5B60",
-                      marginTop: "6px"
-                    }}
-                  >
-                    (easiest)
+              </div>
+
+              {/* Avatar Badge Preview */}
+              <div className="flex justify-center my-0.5">
+                <div className="w-[60px] h-[60px] rounded-full bg-[#E5D9FA] flex items-center justify-center text-[#9031F1] font-bold text-[16px] font-fustat shadow-sm">
+                  {avatarName || "CG"}
+                </div>
+              </div>
+
+              {/* Age & Gender */}
+              <div className="flex gap-3 w-full">
+                <div className="flex-1 flex flex-col text-left">
+                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Age</label>
+                  <input
+                    type="text"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                    className="w-full h-[48px] px-5 rounded-full border border-[#E6DFD5] bg-white text-[#2E0064] font-fustat text-[15px] focus:outline-none focus:border-[#9031F1] transition-colors"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col relative text-left">
+                  <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Gender</label>
+                  <div className="relative">
+                    <select
+                      value={gender}
+                      onChange={(e) => setGender(e.target.value)}
+                      className="w-full h-[48px] pl-5 pr-10 rounded-full border border-[#E6DFD5] bg-white text-[#2E0064] font-fustat text-[15px] appearance-none focus:outline-none focus:border-[#9031F1] transition-colors cursor-pointer"
+                    >
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
+                      <svg className="w-5 h-5 text-[#5C5464]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Card 2: Open the App */}
-              <div className="relative flex-1 max-w-[152px] h-[345px] rounded-[16px] border-2 border-dashed border-[#B097FF] bg-[#F2EEFF] flex flex-col justify-end items-center pb-8">
-                <img
-                  src="/img/Star 1.png"
-                  alt="Star Small"
-                  className="absolute bottom-[66px] left-3.5 w-[20px] h-[20px] object-contain"
+              {/* Phone Number */}
+              <div className="flex flex-col w-full text-left">
+                <label className="text-[12px] font-semibold text-[#5C5464] mb-[8px] font-fustat text-left pl-1">Phone Number *</label>
+                <input
+                  type="text"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  className="w-full h-[48px] px-5 rounded-full border border-[#E6DFD5] bg-white text-[#2E0064] font-fustat text-[15px] focus:outline-none focus:border-[#9031F1] transition-colors"
                 />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex flex-col items-center text-center mt-0 w-full">
+              {currentStepNum === 3 ? (
                 <img
-                  src="/img/Star 1.png"
-                  alt="Star"
-                  className="absolute top-[160px] right-3.5 w-9 h-9 object-contain"
+                  src="/img/Union copy.png"
+                  alt="SWWYG Logo"
+                  className="h-[26px] object-contain mb-3"
                 />
-                <div className="text-center px-1">
-                  <div
-                    style={{
-                      fontFamily: "'Big Shoulders Display', sans-serif",
-                      fontWeight: 800,
-                      fontSize: "25px",
-                      lineHeight: "28px",
-                      letterSpacing: "0px",
-                      textAlign: "center",
-                      textTransform: "uppercase",
-                      color: "#121212"
-                    }}
-                  >
-                    OPEN
-                    <br />
-                    THE APP
+              ) : (
+                <Logo className="w-20 h-20 mb-2" />
+              )}
+
+              <h1 className="font-fustat font-bold text-[30px] leading-[37.5px] text-[#2E0064] tracking-[-0.75px] mb-4 max-w-[280px]">
+                {currentStep.title.includes("<break>") ? (
+                  currentStep.title.split("<break>").map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < currentStep.title.split("<break>").length - 1 && <br />}
+                    </React.Fragment>
+                  ))
+                ) : (
+                  currentStep.title
+                )}
+              </h1>
+
+              {currentStepNum !== 4 && (
+                <p className="text-[16px] text-[#5C5464] leading-[22px] max-w-[320px] px-2 font-normal font-fustat tracking-normal">
+                  {currentStep.subtitle.includes("<break>") ? (
+                    currentStep.subtitle.split("<break>").map((line, i) => (
+                      <React.Fragment key={i}>
+                        {line}
+                        {i < currentStep.subtitle.split("<break>").length - 1 && <br />}
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    currentStep.subtitle
+                  )}
+                </p>
+              )}
+            </div>
+
+            {currentStepNum === 3 ? (
+              <div className="absolute inset-x-0 top-[245px] flex flex-col items-center w-full pointer-events-auto px-6">
+                <div className="text-[17px] font-bold text-[#2E0064] mb-3.5 font-fustat tracking-normal">
+                  Two ways to log:
+                </div>
+                
+                <div className="flex gap-4 w-full justify-center">
+                  {/* Card 1: Tap the Notification */}
+                  <div className="relative flex-1 max-w-[152px] h-[345px] rounded-[16px] border-2 border-dashed border-[#B097FF] bg-[#F2EEFF] flex flex-col justify-end items-center pb-8">
+                    <img
+                      src="/img/Star 1.png"
+                      alt="Star"
+                      className="absolute top-4 left-4 w-10 h-10 object-contain"
+                    />
+                    <img
+                      src="/img/Star 1.png"
+                      alt="Star Small"
+                      className="absolute bottom-[110px] right-3.5 w-[20px] h-[20px] object-contain"
+                    />
+                    <div className="text-center px-1">
+                      <div
+                        style={{
+                          fontFamily: "'Big Shoulders Display', sans-serif",
+                          fontWeight: 800,
+                          fontSize: "25px",
+                          lineHeight: "28px",
+                          letterSpacing: "0px",
+                          textAlign: "center",
+                          textTransform: "uppercase",
+                          color: "#121212"
+                        }}
+                      >
+                        TAP THE
+                        <br />
+                        NOTIFICATION
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "'Fustat', sans-serif",
+                          fontWeight: 400,
+                          fontSize: "12px",
+                          lineHeight: "14px",
+                          letterSpacing: "-0.2px",
+                          color: "#5A5B60",
+                          marginTop: "6px"
+                        }}
+                      >
+                        (easiest)
+                      </div>
+                    </div>
                   </div>
-                  <div
-                    style={{
-                      fontFamily: "'Fustat', sans-serif",
-                      fontWeight: 400,
-                      fontSize: "12px",
-                      lineHeight: "14px",
-                      letterSpacing: "-0.2px",
-                      color: "#5A5B60",
-                      marginTop: "6px"
-                    }}
-                  >
-                    (hit the logo)
+
+                  {/* Card 2: Open the App */}
+                  <div className="relative flex-1 max-w-[152px] h-[345px] rounded-[16px] border-2 border-dashed border-[#B097FF] bg-[#F2EEFF] flex flex-col justify-end items-center pb-8">
+                    <img
+                      src="/img/Star 1.png"
+                      alt="Star Small"
+                      className="absolute bottom-[66px] left-3.5 w-[20px] h-[20px] object-contain"
+                    />
+                    <img
+                      src="/img/Star 1.png"
+                      alt="Star"
+                      className="absolute top-[160px] right-3.5 w-9 h-9 object-contain"
+                    />
+                    <div className="text-center px-1">
+                      <div
+                        style={{
+                          fontFamily: "'Big Shoulders Display', sans-serif",
+                          fontWeight: 800,
+                          fontSize: "25px",
+                          lineHeight: "28px",
+                          letterSpacing: "0px",
+                          textAlign: "center",
+                          textTransform: "uppercase",
+                          color: "#121212"
+                        }}
+                      >
+                        OPEN
+                        <br />
+                        THE APP
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "'Fustat', sans-serif",
+                          fontWeight: 400,
+                          fontSize: "12px",
+                          lineHeight: "14px",
+                          letterSpacing: "-0.2px",
+                          color: "#5A5B60",
+                          marginTop: "6px"
+                        }}
+                      >
+                        (hit the logo)
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ) : currentStep.blobs ? (
-          <div className="absolute inset-0 top-[275px] w-full h-[380px] pointer-events-auto">
+            ) : currentStep.blobs ? (
+              <div className="absolute inset-0 top-[275px] w-full h-[380px] pointer-events-auto">
             {currentStep.blobs.map((blob) => {
               const isFirst = blob.number === 1;
               const blobStyle = isFirst
@@ -340,7 +470,9 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
             );
           })()
         )}
-      </div>
+      </>
+    )}
+  </div>
 
       <div
         className="absolute flex items-center justify-end gap-16 pr-6 pl-4"
