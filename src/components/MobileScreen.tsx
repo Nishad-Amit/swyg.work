@@ -33,6 +33,11 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
   const [dailyWater, setDailyWater] = useState("1500");
   const [waterInterval, setWaterInterval] = useState(180);
 
+  // Step 6 Intake Schedule State
+  const [activeDays, setActiveDays] = useState<string[]>(["mon", "tue", "wed", "thu", "fri"]);
+  const [fromTime, setFromTime] = useState("09:00 AM");
+  const [untilTime, setUntilTime] = useState("09:00 PM");
+
   const containerStyle = isMobileLayout
     ? {
         width: "100%",
@@ -334,6 +339,123 @@ export const MobileScreen: React.FC<MobileScreenProps> = ({
                 <span className="text-[12px] text-[#9A93A0] font-fustat mt-3.5 pl-1">
                   Optional – Default: 180 min
                 </span>
+              </div>
+            </div>
+          </>
+        ) : currentStepNum === 6 ? (
+          <>
+            {/* Header Block */}
+            <div 
+              className="absolute flex flex-col text-left"
+              style={{
+                width: "313px",
+                top: "32px",
+                left: "30px"
+              }}
+            >
+              <h1 className="font-fustat font-bold text-[30px] leading-[34px] text-[#280056] tracking-[-0.75px] mb-2.5">
+                Track My Water Intake
+              </h1>
+              <p className="font-fustat font-normal text-[15px] leading-[20px] text-[#5C5464]">
+                Personalize your hydration rhythm<br />to match your daily lifestyle.
+              </p>
+            </div>
+
+            {/* Schedule Form Content */}
+            <div 
+              className="absolute w-[313px] pointer-events-auto flex flex-col gap-7.5 text-left"
+              style={{ 
+                top: "165px",
+                left: "30px",
+              }}
+            >
+              {/* Active days of the week */}
+              <div className="flex flex-col w-full text-left">
+                <label className="text-[15px] font-bold text-[#280056] mb-3.5 font-fustat pl-1">
+                  Active days of the week
+                </label>
+                <div className="flex gap-2.5 justify-start w-full">
+                  {[
+                    { id: "mon", label: "M" },
+                    { id: "tue", label: "T" },
+                    { id: "wed", label: "W" },
+                    { id: "thu", label: "T" },
+                    { id: "fri", label: "F" },
+                    { id: "sat", label: "S" },
+                    { id: "sun", label: "S" }
+                  ].map((day) => {
+                    const isSelected = activeDays.includes(day.id);
+                    return (
+                      <button
+                        key={day.id}
+                        onClick={() => {
+                          if (activeDays.includes(day.id)) {
+                            setActiveDays(activeDays.filter((d) => d !== day.id));
+                          } else {
+                            setActiveDays([...activeDays, day.id]);
+                          }
+                        }}
+                        className={`w-[36px] h-[36px] rounded-full flex items-center justify-center transition-all duration-150 cursor-pointer border-none shadow-sm`}
+                        style={{
+                          backgroundColor: isSelected ? "#6C0AD0" : "#EEE7DD",
+                          color: isSelected ? "#FFFFFF" : "#4B4455",
+                          fontFamily: "'Big Shoulders Display', sans-serif",
+                          fontWeight: 900,
+                          fontSize: "22px",
+                          lineHeight: "24px",
+                          letterSpacing: "0px",
+                        }}
+                      >
+                        {day.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Active tracking hours */}
+              <div className="flex flex-col w-full text-left">
+                <label className="text-[15px] font-bold text-[#280056] mb-4.5 font-fustat pl-1">
+                  Active tracking hours
+                </label>
+                
+                <div className="flex gap-4 w-full">
+                  {/* From time */}
+                  <div className="flex-1 flex flex-col text-left">
+                    <span className="text-[11px] font-bold text-[#8A8390] tracking-wider mb-1.5 pl-1">FROM</span>
+                    <div className="flex items-center w-full h-[48px] px-4 rounded-full border border-[#E6DFD5] bg-white hover:border-[#9031F1] transition-colors">
+                      <svg className="w-5 h-5 text-[#9031F1] mr-2 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <input
+                        type="text"
+                        value={fromTime}
+                        onChange={(e) => setFromTime(e.target.value)}
+                        className="w-full bg-transparent text-[#280056] font-bold font-fustat text-[15px] focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Until time */}
+                  <div className="flex-1 flex flex-col text-left">
+                    <span className="text-[11px] font-bold text-[#8A8390] tracking-wider mb-1.5 pl-1">UNTIL</span>
+                    <div className="flex items-center w-full h-[48px] px-4 rounded-full border border-[#E6DFD5] bg-white hover:border-[#9031F1] transition-colors">
+                      <svg className="w-5 h-5 text-[#9031F1] mr-2 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <input
+                        type="text"
+                        value={untilTime}
+                        onChange={(e) => setUntilTime(e.target.value)}
+                        className="w-full bg-transparent text-[#280056] font-bold font-fustat text-[15px] focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-[13px] text-[#8A8390] font-fustat mt-5 pl-1 leading-tight">
+                  You won't get notifications outside these hours
+                </p>
               </div>
             </div>
           </>

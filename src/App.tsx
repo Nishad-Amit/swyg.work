@@ -50,9 +50,8 @@ const STEPS: StepConfig[] = [
   {
     stepNumber: 6,
     totalSteps: 8,
-    title: "Connect with Friends",
-    subtitle: "Share your streaks and keep each other accountable. Challenge your friends to hydration duels.",
-    quote: "We go further when we go together. Accountability changes the game."
+    title: "Track My Water Intake",
+    subtitle: "Personalize your hydration rhythm <break> to match your daily lifestyle."
   },
   {
     stepNumber: 7,
